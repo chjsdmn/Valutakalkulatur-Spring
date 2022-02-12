@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valuta kurs</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="vis"></div>
+</body>
+<script>
+        const url = "/sjekk";
+        $.get(url, function(valuta){
+            formater(valuta);
+        })
+
+        function formater(valuta){
+            let ut = "<table><tr><th>Sort</th><th>Kurs</th></tr>";
+            for(let i of valuta){
+                ut += "<tr><td>" + i.valutasort + "</td><td>" + i.valutakurs + "</td></tr>";
+            }
+            ut += "</table>";
+            $("#vis").html(ut);
+        }
+</script>
+</html>

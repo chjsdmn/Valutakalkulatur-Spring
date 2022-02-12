@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valuta kalkulator</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <h1>Valuta kalkulator</h1>
+    Velg valuta:
+    <select id="valutasort">
+        <option disabled selected value>Velg valuta</option>
+        <option>USD</option>
+        <option>SEK</option>
+        <option>EUR</option>
+        <option>CNY</option>
+        <option>JPY</option>
+    </select><br><br>
+    Beløp <input type="number" id="belop">
+    <br><br>
+    <button id="beregn">Beregn</button>
+    <a href="valutakurs.html">Sjekke valutakursene</a>
+    <br>
+    <div id="ut"></div>
+</body>
+<script>
+    $("#beregn").click(function (){
+        let valuta = {
+            valutasort : $("#valutasort").val(),
+            valutakurs : $("#belop").val()
+        }
+        $.get("/regn", valuta, function (data){
+            $("#ut").html(data);
+        })
+    })
+</script>
+</html>
